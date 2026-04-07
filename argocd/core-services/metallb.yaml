@@ -10,6 +10,9 @@ spec:
     repoURL: https://github.com/zelinar/Helm_Charts
     path: core_services/metallb/metallb.yaml
     targetRevision: master
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     namespace: metallb-system
     server: https://kubernetes.default.svc

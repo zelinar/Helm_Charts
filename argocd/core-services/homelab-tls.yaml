@@ -10,6 +10,9 @@ spec:
     repoURL: https://github.com/zelinar/Helm_Charts
     path: helm_charts/core_services/homelab-tls
     targetRevision: master
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     namespace: default
     server: https://kubernetes.default.svc
