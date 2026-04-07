@@ -1,0 +1,32 @@
+# Default values for argocd.
+argocd:
+
+  redis-ha:
+    enabled: true
+
+  controller:
+    replicas: 1
+
+  server:
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      
+    service:
+      type: ClusterIP
+
+    extraArgs:
+      - --insecure  
+
+  repoServer:
+    autoscaling:
+      enabled: true
+      minReplicas: 2  
+
+  applicationSet:
+    replicas: 2     
+  
+
+  
+    
+

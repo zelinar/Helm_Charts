@@ -1,0 +1,33 @@
+ingress-nginx:
+  controller:
+    replicaCount: 2  # High availability, but small footprint
+
+    ingressClassResource:
+      name: nginx
+      enabled: true
+      default: true  # Make this the default ingress class
+
+    service:
+      type: LoadBalancer
+      loadBalancerIP: 10.10.20.196  # Optional: reserve an IP in your MetalLB range
+      externalTrafficPolicy: Local   # Preserves source IP (important for logging)
+
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: false  # Set true if you have Prometheus Operator
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 250m
+        memory: 256Mi
+
+    nodeSelector: {}
+    tolerations: []
+    affinity: {}
+
+defaultBackend:
+  enabled: true  # Serve a default 404 page for unmatched requests

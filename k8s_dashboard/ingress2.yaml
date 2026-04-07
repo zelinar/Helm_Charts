@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+  namespace: kubernetes-dashboard
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`dashboard.homelab.com`)
+      kind: Rule
+      services:
+        - name: dashboard-kong-proxy
+          port: 443
+          scheme: https
+          serversTransport: dashboard-kong-transport
+  tls: {}

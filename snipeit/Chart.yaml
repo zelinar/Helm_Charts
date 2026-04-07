@@ -1,0 +1,28 @@
+apiVersion: v2
+name: snipeit
+description: A free open source IT asset/license management system
+type: application
+appVersion: v8.3.4
+version: 3.4.1
+
+dependencies:
+- condition: mariadb.enabled
+  name: mariadb
+  repository: oci://registry-1.docker.io/cloudpirates
+  version: 0.3.4
+
+
+# home: https://snipeitapp.com
+# icon: https://snipeitapp.com/img/logos/snipe-it-logo-xs.png
+# keywords:
+# - snipeit
+# - inventory
+# - asset management
+# maintainers:
+# - email: max.schmidt@t3n.de
+#   name: mschmidt291
+
+# sources:
+# - https://github.com/t3n/helm-charts
+# - https://github.com/snipe/snipe-it
+

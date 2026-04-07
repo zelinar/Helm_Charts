@@ -1,0 +1,5 @@
+apiVersion: v2
+name: homelab-tls
+description: Local CA for homelab.com domain.
+version: 0.1.0
+appVersion: "1.0"

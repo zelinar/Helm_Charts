@@ -1,0 +1,39 @@
+prometheus:
+  server:
+    persistentVolume:
+      enabled: true
+      size: 20Gi
+  
+    retention: "7d"
+  
+    resources:
+      requests:
+        cpu: 200m
+        memory: 512Mi
+      limits:
+        memory: 2Gi
+
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      hosts:
+        - prometheus.homelab.com
+      path: /
+      pathType: Prefix    
+      
+
+  alertmanager:
+    enabled: true
+    replicaCount: 1
+  
+    extraArgs:
+      cluster.listen-address: ""
+
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      hosts:
+        - host: alertmanager.homelab.com
+          paths:
+            - path: /
+              pathType: Prefix 

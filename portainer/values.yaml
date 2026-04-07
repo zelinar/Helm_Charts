@@ -1,0 +1,10 @@
+portainer:
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: true
+    hosts:
+      - host: "portainer.homelab.com" 
+        paths:
+          - path: "/"
+            port: "9000" 

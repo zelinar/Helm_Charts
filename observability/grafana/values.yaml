@@ -1,0 +1,25 @@
+grafana:
+
+  adminUser: admin
+  adminPassword: admin
+
+  persistence:
+    enabled: true
+    size: 10Gi
+
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    hosts:
+      - grafana.homelab.com
+    path: /  
+
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Prometheus
+          type: prometheus
+          url: http://prometheus-server.monitoring.svc.cluster.local
+          access: proxy
+          isDefault: true 

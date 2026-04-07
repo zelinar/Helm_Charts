@@ -1,0 +1,19 @@
+traefik:
+  deployment:
+    replicas: 2
+
+  web:
+    redirectTo:
+      port: websecure
+
+  service:
+    enabled: true
+    type: LoadBalancer   # Change to NodePort if you don't have MetalLB
+    spec:
+      loadBalancerIP: "10.10.20.100" 
+
+  tlsStore:
+    default:
+      defaultCertificate:
+        secretName: wildcard-homelab-secret
+        namespace: traefik  

@@ -1,0 +1,16 @@
+#CA *.homelab.com certificate creted with homelab-ca-issuer
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-homelab-crt
+  namespace: traefik
+spec:
+  isCA: false
+  secretName: wildcard-homelab-secret
+  issuerRef:
+    name: homelab-ca-issuer
+    kind: ClusterIssuer
+  commonName: "*.homelab.com"  
+  dnsNames:
+    - "*.homelab.com"
+  

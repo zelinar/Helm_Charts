@@ -1,0 +1,37 @@
+kubernetes-dashboard:
+  # Namespace where the dashboard will run
+  namespace: kubernetes-dashboard
+  
+  # Enable or disable metrics-scraper (useful for pod/resource metrics)
+  metricsScraper:
+    enabled: true
+  
+  # Dashboard settings
+  settings:
+    clusterName: "HomeLab"
+    itemsPerPage: 20
+    logsAutoRefreshTimeInterval: 5
+    resourceAutoRefreshTimeInterval: 5
+  
+  # Service configuration
+  service:
+    type: ClusterIP
+    port: 443
+  
+  # Ingress example (disabled by default)
+  ingress:
+    enabled: false
+    className: "traefik"
+    hosts:
+      - dashboard.local.lab
+    tls: []
+    # Example if you have cert-manager:
+    # tls:
+    #   - secretName: dashboard-tls
+    #     hosts:
+    #       - dashboard.local.lab
+  
+  # RBAC: service account for login
+  serviceAccount:
+    create: true
+    name: "kubernetes-dashboard"

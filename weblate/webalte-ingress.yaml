@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: weblate
+  namespace: weblate
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: weblate.homelab.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: weblate
+                port:
+                  number: 80

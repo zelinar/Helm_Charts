@@ -1,0 +1,6 @@
+weblate:
+  adminUser: admin
+  adminPassword: admin
+
+  redis:
+    enabled: false
