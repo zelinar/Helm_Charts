@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb-ip-pool
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  source:
+    repoURL: https://github.com/zelinar/Helm_Charts
+    path: core_services/metallb/custom-ip-pool
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc

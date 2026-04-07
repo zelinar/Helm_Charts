@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  source:
+    repoURL: https://github.com/zelinar/Helm_Charts
+    path: core_services/longhorn
+  destination:
+    namespace: longhorn-system
+    server: https://kubernetes.default.svc
