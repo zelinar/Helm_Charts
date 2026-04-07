@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/zelinar/Helm_Charts
-    path: helm_charts/core_services/homelab-tls
+    path: core_services/homelab-tls
     targetRevision: master
     helm:
       dependencyUpdate: true
