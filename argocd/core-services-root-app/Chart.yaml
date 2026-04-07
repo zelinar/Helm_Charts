@@ -1,0 +1,5 @@
+apiVersion: v2
+name: argocd-rcoresvc
+description: Core services ref for homleab k8s cluster bootstrap
+version: 0.1.0
+appVersion: "1.0"
