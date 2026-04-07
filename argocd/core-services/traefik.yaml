@@ -9,6 +9,7 @@ spec:
   source:
     repoURL: https://github.com/zelinar/Helm_Charts
     path: core_services/traefik
+    targetRevision: master
   destination:
     namespace: traefik
     server: https://kubernetes.default.svc

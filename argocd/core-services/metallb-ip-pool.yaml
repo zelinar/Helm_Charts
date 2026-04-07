@@ -9,6 +9,7 @@ spec:
   source:
     repoURL: https://github.com/zelinar/Helm_Charts
     path: core_services/metallb/custom-ip-pool
+    targetRevision: master
   destination:
     namespace: metallb-system
     server: https://kubernetes.default.svc

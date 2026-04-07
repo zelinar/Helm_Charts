@@ -9,6 +9,7 @@ spec:
   source:
     repoURL: https://github.com/zelinar/Helm_Charts
     path: core_services/longhorn
+    targetRevision: master
   destination:
     namespace: longhorn-system
     server: https://kubernetes.default.svc
