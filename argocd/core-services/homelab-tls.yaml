@@ -11,8 +11,16 @@ spec:
     path: helm_charts/core_services/homelab-tls
     targetRevision: master
     helm:
+      dependencyUpdate: true
+      ignoreMissingValueFiles: true
       valueFiles:
         - values.yaml
   destination:
     namespace: default
     server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true  
