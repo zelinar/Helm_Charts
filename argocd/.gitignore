@@ -1,0 +1,17 @@
+dist
+out
+output
+tmp
+
+.idea
+.DS_Store
+Thumbs.db
+
+# **/charts
+
+# Store sensitive data in here
+.env
+.envrc
+terraform.tfstate*
+.terraform
+.makerc
