@@ -9,6 +9,7 @@ spec:
   source:
     repoURL: https://github.com/zelinar/Helm_Charts
     path: core_services/cert-manager
+    targetRevision: master
   destination:
     namespace: cert-manager
     server: https://kubernetes.default.svc
