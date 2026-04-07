@@ -12,6 +12,7 @@ spec:
     targetRevision: master
     helm:
       releaseName: cert-manager
+      dependencyUpdate: true
       ignoreMissingValueFiles: true
       valueFiles:
         - values.yaml
