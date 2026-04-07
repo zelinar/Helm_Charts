@@ -16,7 +16,7 @@ spec:
       valueFiles:
         - values.yaml
   destination:
-    namespace: default
+    namespace: cert-manager
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
