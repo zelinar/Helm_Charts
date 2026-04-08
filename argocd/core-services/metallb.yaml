@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/zelinar/Helm_Charts
-    path: core_services/metallb/metallb.yaml
+    path: core_services/metallb
     targetRevision: master
     helm:
       dependencyUpdate: true
