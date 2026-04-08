@@ -3,11 +3,17 @@ kind: Ingress
 metadata:
   name: argocd-ui
   namespace: argocd
+  annotations:
+    # Use websecure entrypoint (HTTPS)
+    #traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    # Let Traefik terminate TLS using default certificate
+    # No need to specify TLS secret here
+    #traefik.ingress.kubernetes.io/service.serversscheme: https
 spec:
-  ingressClassName: traefik-lb
-  tls:
-    - hosts:
-        - argocd-mngmt.homelab.com
+  ingressClassName: traefik
+  # tls:
+  #   - hosts:
+  #       - argocd-mngmt.homelab.com
       #secretName: wildcard-local-tls
   rules:
     - host: argocd-mngmt.homelab.com

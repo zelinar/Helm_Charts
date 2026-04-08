@@ -4,10 +4,10 @@ metadata:
   name: longhorn-ui
   namespace: longhorn-system
 spec:
-  ingressClassName: traefik-lb
-  tls:
-    - hosts:
-        - longhorn-mngmt.homelab.com
+  ingressClassName: traefik
+  # tls:
+  #   - hosts:
+  #       - longhorn-mngmt.homelab.com
   rules:
     - host: longhorn-mngmt.homelab.com
       http:
