@@ -1,6 +1,6 @@
 metallb:
   addressPool:
-    namespace: metallb
+    namespace: metallb-system
     poolName: custom-pool
     startIP: 10.10.20.100
     endIP: 10.10.20.110
