@@ -14,7 +14,7 @@ spec:
   # tls:
   #   - hosts:
   #       - argocd-mngmt.homelab.com
-      #secretName: wildcard-local-tls
+  #     #secretName: wildcard-local-tls
   rules:
     - host: argocd-mngmt.homelab.com
       http:

@@ -5,8 +5,9 @@ type: application
 version: 1.0.0
 
 dependencies:
-  - condition: argocd.enabled
-    repository: https://argoproj.github.io/argo-helm
+  - repository: https://argoproj.github.io/argo-helm
+    #repository: docker.io/argoproj/argocd
+    #repository: quay.io/argoproj/argocd
     name: argo-cd
     alias: argocd
     version: 9.4.17
