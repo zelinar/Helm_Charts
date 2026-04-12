@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: traefik
+  name: cnpg-operator
   annotations:
     argocd.argoproj.io/sync-wave: "4"
 spec:
   project: default
   source:
     repoURL: https://github.com/zelinar/Helm_Charts
-    path: core_services/cnpg_operator
+    path: core_services/cnpg-operator
     targetRevision: master
     helm:
       dependencyUpdate: true
