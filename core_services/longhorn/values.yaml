@@ -7,4 +7,7 @@ longhorn:
     defaultDataLocality: best-effort
     defaultReplicaCount: 3
 
+  preUpgradeChecker:
+    jobEnabled: false  
+
   
