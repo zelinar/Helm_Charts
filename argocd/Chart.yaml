@@ -10,4 +10,4 @@ dependencies:
     #repository: quay.io/argoproj/argocd
     name: argo-cd
     alias: argocd
-    version: 9.4.17
+    version: 9.5.0
