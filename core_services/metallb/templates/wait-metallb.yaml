@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wait-metallb-controller
+  namespace: metallb-system
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  activeDeadlineSeconds: 300
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: wait
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for MetalLB controller..."
+              until nc -z metallb-controller.metallb-system.svc 7472; do
+                sleep 5
+              done
+              echo "MetalLB controller is ready"

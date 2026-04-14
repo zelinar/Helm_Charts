@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wait-cert-manager-webhook
+  namespace: cert-manager
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  activeDeadlineSeconds: 300
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: wait
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for cert-manager webhook..."
+              until nc -z cert-manager-webhook.cert-manager.svc 443; do
+                sleep 5
+              done
+              echo "Webhook is ready"
