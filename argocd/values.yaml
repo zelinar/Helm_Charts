@@ -1,35 +1,43 @@
 # Default values for argocd.
-argocd:
-  
+argo-cd:
+  redis-ha:
+    enabled: true
 
-  # redis-ha:
-  #   enabled: true
+  controller:
+    replicas: 1
 
-  # controller:
-  #   replicas: 1
+  global:
+    domain: argocd-mngmt.homelab.com
 
-    server:
-      autoscaling:
-        enabled: true
-        minReplicas: 2
-
-      extraArgs:
-       - --insecure   
-      
-    service:
-      type: ClusterIP
-
+  server:
+    autoscaling:
+      enabled: true
+      minReplicas: 2 
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      controller: generic
+    extraTls:
+      - hosts:
+          - argocd-mngmt.homelab.com
     
-
-  # repoServer:
-  #   autoscaling:
-  #     enabled: true
-  #     minReplicas: 2  
-
-  # applicationSet:
-  #   replicas: 2     
-  
-
-  
+  configs:
+    params:
+      # TLS Termination at Ingress
+      server.insecure: true
+    autoscaling:
+      enabled: true
+      minReplicas: 2
     
+  repoServer:
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+
+  applicationSet:
+    replicas: 2
+
+
+
+
 

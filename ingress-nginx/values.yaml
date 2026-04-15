@@ -9,7 +9,7 @@ ingress-nginx:
 
     service:
       type: LoadBalancer
-      loadBalancerIP: 10.10.20.196  # Optional: reserve an IP in your MetalLB range
+      loadBalancerIP: 10.10.20.101  # Optional: reserve an IP in your MetalLB range
       externalTrafficPolicy: Local   # Preserves source IP (important for logging)
 
     metrics:
