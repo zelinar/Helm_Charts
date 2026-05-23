@@ -7,7 +7,7 @@ argo-cd:
     replicas: 1
 
   global:
-    domain: argocd-mngmt.homelab.com
+    domain: argocd-dev.homelab.cloud
 
   server:
     autoscaling:
@@ -17,13 +17,20 @@ argo-cd:
       enabled: true
       ingressClassName: traefik
       controller: generic
-    extraTls:
-      - hosts:
-          - argocd-mngmt.homelab.com
+      extraTls:
+        - hosts:
+          - argocd-dev.homelab.cloud
+    resources:      
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 192Mi
     
   configs:
     params:
-      # TLS Termination at Ingress
+      # TLS Termination at Ingress (internal TLS off)
       server.insecure: true
     autoscaling:
       enabled: true
@@ -33,10 +40,22 @@ argo-cd:
     autoscaling:
       enabled: true
       minReplicas: 2
+    resources:
+      limits:
+        cpu: 800m
+        memory: 768Mi
+      requests:
+        cpu: 200m
+        memory: 512Mi  
 
   applicationSet:
-    replicas: 2
-
+    replicas: 1
+    resources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
 
 
 

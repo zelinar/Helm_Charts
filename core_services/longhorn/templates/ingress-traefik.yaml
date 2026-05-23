@@ -9,7 +9,7 @@ spec:
   #   - hosts:
   #       - longhorn-mngmt.homelab.com
   rules:
-    - host: longhorn-mngmt.homelab.com
+    - host: longhorn-dev.homelab.cloud
       http:
         paths:
           - path: /

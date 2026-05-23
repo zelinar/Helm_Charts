@@ -10,7 +10,7 @@ spec:
   issuerRef:
     name: homelab-ca-issuer
     kind: ClusterIssuer
-  commonName: "*.homelab.com"  
+  commonName: "*.homelab.cloud"  
   dnsNames:
-    - "*.homelab.com"
+    - "*.homelab.cloud"
   

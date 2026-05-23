@@ -10,7 +10,7 @@ traefik:
     enabled: true
     type: LoadBalancer   # Change to NodePort if you don't have MetalLB
     spec:
-      loadBalancerIP: "10.10.20.100" 
+      loadBalancerIP: "10.10.20.125" 
 
   tlsStore:
     default:
