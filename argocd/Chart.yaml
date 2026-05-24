@@ -9,5 +9,5 @@ dependencies:
     #repository: docker.io/argoproj/argocd
     #repository: quay.io/argoproj/argocd
     name: argo-cd
-    alias: argocd
-    version: 9.5.0
+    #alias: argocd
+    version: 9.5.15
