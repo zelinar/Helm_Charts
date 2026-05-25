@@ -1,20 +1,20 @@
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: wait-cert-manager
-  annotations:
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
-spec:
-  template:
-    spec:
-      restartPolicy: Never
-      containers:
-        - name: wait
-          image: bitnami/kubectl
-          command:
-            - sh
-            - -c
-            - |
-              echo "Waiting for cert-manager webhook rollout..."
-              kubectl rollout status deploy/cert-manager-webhook -n cert-manager --timeout=600s
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: wait-cert-manager
+#   annotations:
+#     argocd.argoproj.io/hook: PreSync
+#     argocd.argoproj.io/hook-delete-policy: HookSucceeded
+# spec:
+#   template:
+#     spec:
+#       restartPolicy: Never
+#       containers:
+#         - name: wait
+#           image: bitnami/kubectl
+#           command:
+#             - sh
+#             - -c
+#             - |
+#               echo "Waiting for cert-manager webhook rollout..."
+#               kubectl rollout status deploy/cert-manager-webhook -n cert-manager --timeout=600s
