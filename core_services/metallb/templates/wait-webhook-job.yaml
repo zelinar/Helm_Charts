@@ -1,26 +1,26 @@
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: wait-metallb-controller
-  namespace: metallb-system
-  annotations:
-    argocd.argoproj.io/hook: preSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
-    argocd.argoproj.io/sync-wave: "1"
-spec:
-  activeDeadlineSeconds: 600
-  template:
-    spec:
-      restartPolicy: Never
-      containers:
-        - name: wait
-          image: busybox
-          command:
-            - sh
-            - -c
-            - |
-              echo "Waiting for MetalLB controller..."
-              until nc -z metallb-webhook-service.metallb-system.svc 443; do
-                sleep 5
-              done
-              echo "MetalLB controller is ready"
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: wait-metallb-controller
+#   namespace: metallb-system
+#   annotations:
+#     argocd.argoproj.io/hook: preSync
+#     argocd.argoproj.io/hook-delete-policy: HookSucceeded
+#     argocd.argoproj.io/sync-wave: "1"
+# spec:
+#   activeDeadlineSeconds: 600
+#   template:
+#     spec:
+#       restartPolicy: Never
+#       containers:
+#         - name: wait
+#           image: busybox
+#           command:
+#             - sh
+#             - -c
+#             - |
+#               echo "Waiting for MetalLB controller..."
+#               until nc -z metallb-webhook-service.metallb-system.svc 443; do
+#                 sleep 5
+#               done
+#               echo "MetalLB controller is ready"
