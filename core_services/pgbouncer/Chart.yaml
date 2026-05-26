@@ -1,0 +1,9 @@
+apiVersion: v2
+name: pgbouncer
+description: PgBouncer Helm Chart
+type: application
+version: 1.0.0
+dependencies:
+- name: pgbouncer
+  version: 4.1.7
+  repository: https://icoretech.github.io/helm
