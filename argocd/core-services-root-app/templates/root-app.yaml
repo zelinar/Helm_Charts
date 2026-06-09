@@ -3,12 +3,15 @@ kind: Application
 metadata:
   name: core-services-root
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-5"
 spec:
   project: default
   source:
     repoURL: https://github.com/zelinar/Helm_Charts
     targetRevision: master
-    path: argocd/core-services
+    #commenting path - old approach
+    #path: argocd/core-services
     directory:
       recurse: true
   destination:
