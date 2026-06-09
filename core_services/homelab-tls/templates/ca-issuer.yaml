@@ -6,3 +6,4 @@ metadata:
 spec:
   ca:
     secretName: homelab-ca-secret
+    
