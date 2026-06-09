@@ -21,9 +21,9 @@ spec:
         #argocd.argoproj.io/manifest-generate-paths: .
         # use syncvawe to order workload deployment
         argocd.argoproj.io/sync-wave: >-
-          {{- if eq .path.basename "metallb" -}}-10
+          {{- if .path.basename "metallb" -}}-10
           {{- else if eq .path.basename "cert-manager" -}}-5
-          {{- elif eq .path.basename "metallb-custom-ip-pool" -}}8
+          {{- else if eq .path.basename "metallb-custom-ip-pool" -}}8
           {{- else if eq .path.basename "traefik" -}}0
           {{- else if eq .path.basename "longhorn" -}}5
           {{- else if eq .path.basename "cnpg-operator" -}}10
