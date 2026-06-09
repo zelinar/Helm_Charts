@@ -2,7 +2,8 @@
 ```md
 # Helm Charts Repository
 
-This repository contains a collection of Helm charts for deploying and managing various applications and services in a Kubernetes cluster. It is structured to support a homelab environment with tools for observability, networking, storage, and more.
+This repository contains a collection of Helm charts for deploying and managing various applications and services in a Kubernetes
+cluster. It is structured to support a homelab environment with tools for observability, networking, storage, and more. It is used together with ArgoCD to provide GitOps k8s cluster bootratping.
 
 ## Repository Structure
 

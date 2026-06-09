@@ -1,0 +1,12 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: core-services
+  namespace: argocd
+spec:
+  sourceRepos:
+    - https://github.com/zelinar/Helm_Charts
+
+  destinations:
+    - namespace: '*'
+      server: https://kubernetes.default.svc
