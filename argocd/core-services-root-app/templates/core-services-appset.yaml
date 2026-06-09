@@ -3,45 +3,67 @@ kind: ApplicationSet
 metadata:
   name: core-services
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
+
 spec:
   goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
+  goTemplateOptions: ["missingkey=default"]
+
   generators:
     - git:
         repoURL: https://github.com/zelinar/Helm_Charts
         revision: master
         directories:
           - path: core-services/*/
+
   template:
     metadata:
-      name: '{{.path.basename}}-core'
+      name: '{{ .path.path | default "" | replace "/" "-" }}'
       annotations:
-        #argocd.argoproj.io/manifest-generate-paths: .
-        # use syncvawe to order workload deployment
         argocd.argoproj.io/sync-wave: >-
-          {{- if .path.basename "metallb" -}}-10
-          {{- else if eq .path.basename "cert-manager" -}}-5
-          {{- else if eq .path.basename "metallb-custom-ip-pool" -}}8
-          {{- else if eq .path.basename "traefik" -}}0
-          {{- else if eq .path.basename "longhorn" -}}5
-          {{- else if eq .path.basename "cnpg-operator" -}}10
-          {{- else if eq .path.basename "homelab-tls" -}}10
-          {{- else -}}0
+          {{- $path := .path.path | default "" -}}
+          {{- if $path -}}
+          {{- $parts := splitList "/" $path -}}
+          {{- if ge (len $parts) 2 -}}
+          {{- $name := index $parts 1 -}}
+          {{- if eq $name "metallb" -}}
+          -10
+          {{- else if eq $name "cert-manager" -}}
+          -5
+          {{- else if eq $name "metallb-custom-ip-pool" -}}
+          8
+          {{- else if eq $name "traefik" -}}
+          0
+          {{- else if eq $name "longhorn" -}}
+          5
+          {{- else if eq $name "cnpg-operator" -}}
+          10
+          {{- else if eq $name "homelab-tls" -}}
+          10
+          {{- else -}}
+          0
           {{- end }}
+          {{- else -}}
+          0
+          {{- end }}
+          {{- else -}}
+          0
+          {{- end }}
+
     spec:
       project: core-services
+
       source:
         repoURL: https://github.com/zelinar/Helm_Charts
         targetRevision: master
-        path: '{{.path.path}}'
+        path: '{{ .path.path | default "" }}'
+
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.path.basename}}'
+        namespace: '{{ $path := .path.path | default "" }}{{ if $path }}{{ index (splitList "/" $path) 1 | default "default" }}{{ else }}default{{ end }}'
+
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
         syncOptions:
-          - CreateNamespace=true        
+          - CreateNamespace=true
