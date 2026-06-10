@@ -9,6 +9,14 @@ spec:
   sourceRepos:
     - https://github.com/zelinar/Helm_Charts
 
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*' 
+
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'    
+
   destinations:
     - namespace: '*'
       server: https://kubernetes.default.svc
