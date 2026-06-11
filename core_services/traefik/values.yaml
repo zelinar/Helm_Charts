@@ -16,4 +16,4 @@ traefik:
     default:
       defaultCertificate:
         secretName: wildcard-homelab-secret
-        #namespace: traefik  
+        
