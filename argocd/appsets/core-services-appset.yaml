@@ -5,41 +5,46 @@ metadata:
   namespace: argocd
 spec:
   goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
+  goTemplateOptions: ["missingkey=default"]
   generators:
     - git:
         repoURL: https://github.com/zelinar/Helm_Charts
         revision: master
         directories:
-          - path: core-services/*/
+          - path: core_services/*
   template:
     metadata:
-      name: '{{.path.basename}}-core'
-      annotations:
-        #argocd.argoproj.io/manifest-generate-paths: .
-        # use syncvawe to order workload deployment
-        argocd.argoproj.io/sync-wave: >-
-          {{- if eq .path.basename "metallb" -}}-10
-          {{- else if eq .path.basename "cert-manager" -}}-5
-          {{- elif eq .path.basename "metallb-custom-ip-pool" -}}8
-          {{- else if eq .path.basename "traefik" -}}0
-          {{- else if eq .path.basename "longhorn" -}}5
-          {{- else if eq .path.basename "cnpg-operator" -}}10
-          {{- else if eq .path.basename "homelab-tls" -}}10
-          {{- else -}}0
-          {{- end }}
+      name: '{{ .path.basename }}'
     spec:
       project: core-services
       source:
         repoURL: https://github.com/zelinar/Helm_Charts
         targetRevision: master
-        path: '{{.path.path}}'
+        path: '{{ .path.path }}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.path.basename}}'
+        namespace: >-
+          {{- $name := .path.basename -}}
+          {{- if eq $name "longhorn" -}}
+            longhorn-system
+          {{- else if eq $name "metallb" -}}
+            metallb-system
+          {{- else if eq $name "traefik" -}}
+            traefik
+          {{- else if eq $name "cert-manager" -}}
+            cert-manager
+          {{- else if eq $name "cnpg-operator" -}}
+            cnpg-system
+          {{- else if eq $name "homelab-tls" -}}
+            cert-manager
+          {{- else -}}
+            {{ $name }}
+          {{- end -}}
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
         syncOptions:
-          - CreateNamespace=true        
+          - CreateNamespace=true
+          - PrunePropagationPolicy=foreground
+          - ServerSideApply=true
