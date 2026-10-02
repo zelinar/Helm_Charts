@@ -4,7 +4,7 @@ portainer:
   ingress:
     enabled: true
     hosts:
-      - host: "portainer.homelab.com" 
+      - host: portainer-dev.homelab.cloud
         paths:
           - path: "/"
             port: "9000" 

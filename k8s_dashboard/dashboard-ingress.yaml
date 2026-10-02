@@ -8,7 +8,7 @@ metadata:
 spec:  
   ingressClassName: traefik
   rules:
-    - host: dashboard.homelab.com
+    - host: dashboard-dev.homelab.cloud
       http:
         paths:
           - path: /
