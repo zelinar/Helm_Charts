@@ -7,7 +7,7 @@ argo-cd:
     replicas: 1
 
   global:
-    domain: argocd-dev.homelab.cloud
+    domain: argocd-mgmt.homelab.cloud
 
   server:
     autoscaling:
@@ -19,7 +19,7 @@ argo-cd:
       controller: generic
       extraTls:
         - hosts:
-          - argocd-dev.homelab.cloud
+          - argocd-mgmt.homelab.cloud
     resources:      
       limits:
         cpu: 200m
